@@ -25,8 +25,6 @@
 
 ## Установка
 
-### OpenCode
-
 ```bash
 # Сначала установите core
 git clone https://github.com/prikotov/yandex-metrika-core.git .opencode/skills/yandex-metrika-core
@@ -35,33 +33,16 @@ git clone https://github.com/prikotov/yandex-metrika-core.git .opencode/skills/y
 git clone https://github.com/prikotov/yandex-metrika-search.git .opencode/skills/yandex-metrika-search
 ```
 
-### KiloCode
-
-```bash
-# Сначала установите core
-git clone https://github.com/prikotov/yandex-metrika-core.git .kilocode/skills/yandex-metrika-core
-
-# Затем этот skill
-git clone https://github.com/prikotov/yandex-metrika-search.git .kilocode/skills/yandex-metrika-search
-```
-
 ## Использование
 
 ### Напрямую через PHP
 
-**OpenCode:**
 ```bash
 php .opencode/skills/yandex-metrika-search/metrika.php                    # последние 30 дней
 php .opencode/skills/yandex-metrika-search/metrika.php 2026-01-01 2026-02-28  # свой период
 ```
 
-**KiloCode:**
-```bash
-php .kilocode/skills/yandex-metrika-search/metrika.php                    # последние 30 дней
-php .kilocode/skills/yandex-metrika-search/metrika.php 2026-01-01 2026-02-28  # свой период
-```
-
-### Через агента OpenCode
+### Через агента
 
 После установки skill агент автоматически узнаёт о нём. Примеры запросов:
 
@@ -77,24 +58,6 @@ php .kilocode/skills/yandex-metrika-search/metrika.php 2026-01-01 2026-02-28  # 
 Мне нужно проанализировать, по каким запросам находят сайт. 
 Сделай выгрузку за последние 30 дней.
 ```
-
-### В KiloCode
-
-KiloCode поддерживает OpenCode Skills. После установки:
-
-1. Откройте KiloCode в VS Code
-2. Перейдите в режим **Agent**
-3. Запросите отчёт:
-
-```
-Выполни skill yandex-metrika-search за январь 2026
-```
-
-```
-Запусти отчёт по поисковым фразам через metrika.php
-```
-
-KiloCode выполнит PHP-скрипт и покажет путь к созданным файлам.
 
 ## Результаты
 
