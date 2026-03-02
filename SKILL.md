@@ -3,13 +3,7 @@ name: yandex-metrika-search
 description: Поисковые фразы из Яндекс.Метрики для SEO-анализа
 license: MIT
 compatibility: opencode
-dependencies:
-  - yandex-metrika-core
 ---
-
-## Зависимости
-
-Требует установленный `yandex-metrika-core`
 
 ## Когда использовать
 
@@ -18,6 +12,8 @@ dependencies:
 - Определение страниц с высокими отказами
 
 ## Запуск
+
+Выполнять из корня проекта:
 
 ```bash
 php .opencode/skills/yandex-metrika-search/metrika.php [дата_от] [дата_до]
