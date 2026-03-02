@@ -13,12 +13,11 @@
 
 ## Что вы получите
 
-Два отчёта в форматах CSV и Markdown:
+Отчёт в форматах CSV и Markdown:
 
 | Файл | Содержание |
 |------|------------|
 | `metrika_phrases.*` | Поисковые фразы с метриками: визиты, просмотры, отказы, время на сайте |
-| `metrika_phrases_pages.*` | Связка фраза → landing page (на какие страницы приходят по каждой фразе) |
 
 ## Зависимости
 
@@ -68,9 +67,7 @@ php .opencode/skills/yandex-metrika-search/metrika.php 2026-01-01 2026-02-28  # 
 metrika_reports/
 └── 2026-03-02_10-30-15/
     ├── metrika_phrases.csv
-    ├── metrika_phrases.md
-    ├── metrika_phrases_pages.csv
-    └── metrika_phrases_pages.md
+    └── metrika_phrases.md
 ```
 
 CSV открывается в Excel/LibreOffice, Markdown — в любом текстовом редакторе или напрямую в Obsidian.
