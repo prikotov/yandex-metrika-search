@@ -25,6 +25,8 @@
 
 ## Установка
 
+Skill совместим с различными AI-агентами. Примеры ниже даны для OpenCode — для других инструментов смотрите их документацию по установке skills.
+
 ```bash
 # Сначала установите core
 git clone https://github.com/prikotov/yandex-metrika-core.git .opencode/skills/yandex-metrika-core
