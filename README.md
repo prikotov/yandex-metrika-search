@@ -4,16 +4,16 @@
 
 ## Зависимости
 
-⚠️ Требует установленный [yandex-metrika-core](https://github.com/USER/yandex-metrika-core)
+⚠️ Требует установленный [yandex-metrika-core](https://github.com/prikotov/yandex-metrika-core)
 
 ## Установка
 
 ```bash
 # Сначала установите core
-git clone https://github.com/USER/yandex-metrika-core.git .opencode/skills/yandex-metrika-core
+git clone https://github.com/prikotov/yandex-metrika-core.git .opencode/skills/yandex-metrika-core
 
 # Затем этот skill
-git clone https://github.com/USER/yandex-metrika-search.git .opencode/skills/yandex-metrika-search
+git clone https://github.com/prikotov/yandex-metrika-search.git .opencode/skills/yandex-metrika-search
 ```
 
 ## Использование
