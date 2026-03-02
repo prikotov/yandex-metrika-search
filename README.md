@@ -36,5 +36,6 @@ metrika_reports/
 
 ---
 
-Постановка задач, архитектура, ревью — [**Dmitry Prikotov**](https://prikotov.pro/)
+Постановка задач, архитектура, ревью — [Dmitry Prikotov](https://prikotov.pro/)
+
 Реализация — [OpenCode](https://opencode.ai) + GLM-5
