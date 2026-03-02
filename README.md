@@ -34,6 +34,7 @@ metrika_reports/
     └── metrika_phrases_pages.md
 ```
 
-> ---
-> Постановка задач, архитектура, ревью — **Dmitry Prikotov**\
-> Реализация — [OpenCode](https://opencode.ai) + GLM-5
+---
+
+Постановка задач, архитектура, ревью — [**Dmitry Prikotov**](https://prikotov.pro/)
+Реализация — [OpenCode](https://opencode.ai) + GLM-5
