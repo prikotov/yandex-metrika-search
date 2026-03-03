@@ -97,6 +97,7 @@ if ($args['limit'] !== null && $args['limit'] > 0) {
 }
 
 $reportPath = MetrikaClient::createReportDir();
+$timestamp = MetrikaClient::getFileTimestamp();
 
 echo "\n  Папка отчета: metrika_reports/" . basename($reportPath) . "\n";
 echo "  Период: {$args['dateFrom']} — {$args['dateTo']}\n";
@@ -106,10 +107,10 @@ if ($args['limit'] !== null) {
 }
 echo "\n";
 
-MetrikaClient::saveCsv($phrases, "$reportPath/metrika_phrases.csv");
-MetrikaClient::saveMarkdown($phrases, "$reportPath/metrika_phrases.md", "Поисковые фразы", $args['dateFrom'], $args['dateTo']);
+MetrikaClient::saveCsv($phrases, "$reportPath/metrika_phrases_$timestamp.csv");
+MetrikaClient::saveMarkdown($phrases, "$reportPath/metrika_phrases_$timestamp.md", "Поисковые фразы", $args['dateFrom'], $args['dateTo']);
 
 echo "  Создано файлов:\n";
-echo "    - metrika_phrases.csv\n";
-echo "    - metrika_phrases.md\n";
+echo "    - metrika_phrases_$timestamp.csv\n";
+echo "    - metrika_phrases_$timestamp.md\n";
 echo "\n  Найдено фраз: " . count($phrases) . "\n";
