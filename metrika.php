@@ -5,8 +5,53 @@ require_once __DIR__ . '/../yandex-metrika-core/MetrikaClient.php';
 MetrikaClient::checkGitignore();
 $config = MetrikaClient::loadConfig();
 
-$dateFrom = $argv[1] ?? date('Y-m-d', strtotime('-30 days'));
-$dateTo = $argv[2] ?? date('Y-m-d');
+function parseArgs(array $argv): array
+{
+    $result = [
+        'dateFrom' => date('Y-m-d', strtotime('-30 days')),
+        'dateTo' => date('Y-m-d'),
+        'sort' => 'visits',
+        'order' => 'desc',
+        'limit' => null
+    ];
+    
+    $i = 1;
+    while ($i < count($argv)) {
+        $arg = $argv[$i];
+        
+        if (in_array($arg, ['--sort', '-s']) && isset($argv[$i + 1])) {
+            $result['sort'] = $argv[++$i];
+        } elseif (in_array($arg, ['--order', '-o']) && isset($argv[$i + 1])) {
+            $result['order'] = $argv[++$i];
+        } elseif (in_array($arg, ['--limit', '-l']) && isset($argv[$i + 1])) {
+            $result['limit'] = (int)$argv[++$i];
+        } elseif (!str_starts_with($arg, '-') && strlen($arg) === 10 && strpos($arg, '-') !== false) {
+            if (!$result['dateFrom'] || $result['dateFrom'] === date('Y-m-d', strtotime('-30 days'))) {
+                $result['dateFrom'] = $arg;
+            } else {
+                $result['dateTo'] = $arg;
+            }
+        }
+        $i++;
+    }
+    
+    return $result;
+}
+
+function getSortField(string $sort): string
+{
+    $map = [
+        'visits' => 'ym:s:visits',
+        'visitors' => 'ym:s:users',
+        'bounce_rate' => 'ym:s:bounceRate',
+        'page_depth' => 'ym:s:pageDepth',
+        'avg_duration' => 'ym:s:avgVisitDurationSeconds'
+    ];
+    
+    return $map[$sort] ?? 'ym:s:visits';
+}
+
+$args = parseArgs($argv);
 
 $client = new MetrikaClient(
     $config['client_id'],
@@ -14,16 +59,18 @@ $client = new MetrikaClient(
     $config['counter_id']
 );
 
-function getSearchPhrases(MetrikaClient $client, string $dateFrom, string $dateTo): array
+function getSearchPhrases(MetrikaClient $client, string $dateFrom, string $dateTo, string $sortField, string $order): array
 {
+    $prefix = $order === 'asc' ? '' : '-';
+    
     $data = $client->request([
         'ids' => $client->getCounterId(),
-        'metrics' => 'ym:s:visits,ym:s:pageviews,ym:s:bounceRate,ym:s:avgVisitDurationSeconds',
+        'metrics' => 'ym:s:visits,ym:s:users,ym:s:pageviews,ym:s:bounceRate,ym:s:pageDepth,ym:s:avgVisitDurationSeconds',
         'dimensions' => 'ym:s:lastSearchPhrase',
         'date1' => $dateFrom,
         'date2' => $dateTo,
         'limit' => 1000,
-        'sort' => '-ym:s:visits'
+        'sort' => $prefix . $sortField
     ]);
     
     $result = [];
@@ -31,24 +78,36 @@ function getSearchPhrases(MetrikaClient $client, string $dateFrom, string $dateT
         $result[] = [
             'phrase' => $item['dimensions'][0]['name'] ?? '',
             'visits' => (int)($item['metrics'][0] ?? 0),
-            'pageviews' => (int)($item['metrics'][1] ?? 0),
-            'bounce_rate' => round($item['metrics'][2] ?? 0, 2),
-            'avg_duration' => round($item['metrics'][3] ?? 0, 2)
+            'visitors' => (int)($item['metrics'][1] ?? 0),
+            'pageviews' => (int)($item['metrics'][2] ?? 0),
+            'bounce_rate' => round($item['metrics'][3] ?? 0, 2),
+            'page_depth' => round($item['metrics'][4] ?? 0, 2),
+            'avg_duration' => round($item['metrics'][5] ?? 0, 2)
         ];
     }
     
     return $result;
 }
 
+$sortField = getSortField($args['sort']);
+$phrases = getSearchPhrases($client, $args['dateFrom'], $args['dateTo'], $sortField, $args['order']);
+
+if ($args['limit'] !== null && $args['limit'] > 0) {
+    $phrases = array_slice($phrases, 0, $args['limit']);
+}
+
 $reportPath = MetrikaClient::createReportDir();
 
 echo "\n  Папка отчета: metrika_reports/" . basename($reportPath) . "\n";
-echo "  Период: $dateFrom — $dateTo\n\n";
-
-$phrases = getSearchPhrases($client, $dateFrom, $dateTo);
+echo "  Период: {$args['dateFrom']} — {$args['dateTo']}\n";
+echo "  Сортировка: {$args['sort']} ({$args['order']})\n";
+if ($args['limit'] !== null) {
+    echo "  Лимит: топ {$args['limit']}\n";
+}
+echo "\n";
 
 MetrikaClient::saveCsv($phrases, "$reportPath/metrika_phrases.csv");
-MetrikaClient::saveMarkdown($phrases, "$reportPath/metrika_phrases.md", "Поисковые фразы", $dateFrom, $dateTo);
+MetrikaClient::saveMarkdown($phrases, "$reportPath/metrika_phrases.md", "Поисковые фразы", $args['dateFrom'], $args['dateTo']);
 
 echo "  Создано файлов:\n";
 echo "    - metrika_phrases.csv\n";
