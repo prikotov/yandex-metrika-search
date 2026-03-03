@@ -1,8 +1,6 @@
 ---
 name: yandex-metrika-search
 description: Поисковые фразы из Яндекс.Метрики для SEO-анализа
-license: MIT
-compatibility: opencode
 ---
 
 ## Когда использовать
