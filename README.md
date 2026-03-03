@@ -18,6 +18,7 @@
 | Файл | Содержание |
 |------|------------|
 | `metrika_phrases.*` | Поисковые фразы с метриками: визиты, просмотры, отказы, время на сайте |
+| `phrases_pages.*` | Кросс-отчёт: поисковые фразы + страницы входа (запуск `phrases_pages.php`) |
 
 ## Зависимости
 
@@ -40,8 +41,32 @@ git clone https://github.com/prikotov/yandex-metrika-search.git .opencode/skills
 ### Напрямую через PHP
 
 ```bash
+# Базовые запросы
 php .opencode/skills/yandex-metrika-search/metrika.php                    # последние 30 дней
 php .opencode/skills/yandex-metrika-search/metrika.php 2026-01-01 2026-02-28  # свой период
+
+# С параметрами
+php .opencode/skills/yandex-metrika-search/metrika.php -l 20              # топ-20 фраз
+php .opencode/skills/yandex-metrika-search/metrika.php -s bounce_rate     # сортировка по отказам
+```
+
+### Параметры
+
+| Параметр | Сокращение | Описание | Пример |
+|----------|------------|----------|--------|
+| `--limit` | `-l` | Лимит записей | `-l 20` |
+| `--sort` | `-s` | Поле сортировки | `-s bounce_rate` |
+| `--order` | `-o` | Порядок: asc/desc | `-o asc` |
+
+### Ограничения API
+
+⚠️ **API Яндекс.Метрики не поддерживает:**
+- Фильтрацию поисковых фраз по конкретной странице
+- Комбинацию "поисковая фраза + страница входа"
+
+Для анализа источников трафика по странице используйте `yandex-metrika-traffic`:
+```bash
+php .opencode/skills/yandex-metrika-traffic/traffic.php -p "rag-s-nulya"
 ```
 
 ### Через агента

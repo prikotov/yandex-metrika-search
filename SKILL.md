@@ -66,3 +66,7 @@ php .opencode/skills/yandex-metrika-search/metrika.php -s page_depth
 | `bounce_rate` | Процент отказов |
 | `page_depth` | Глубина просмотра |
 | `avg_duration` | Среднее время на сайте (сек) |
+
+## Ограничения
+
+⚠️ API не позволяет получить поисковые фразы для конкретной страницы. Используйте `yandex-metrika-traffic` для анализа источников трафика по странице.
