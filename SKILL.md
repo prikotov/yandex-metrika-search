@@ -54,8 +54,8 @@ php .opencode/skills/yandex-metrika-search/metrika.php -s page_depth
 
 ## Результат
 
-`metrika_reports/YYYY-MM-DD_HH-MM-SS/`:
-- `metrika_phrases.csv` / `.md` — фразы с метриками
+`metrika_reports/YYYY-MM-DD/`:
+- `metrika_phrases_YYYY-MM-DD_HH-MM-SS.csv` / `.md` — фразы с метриками
 
 ### Поля в отчете
 
