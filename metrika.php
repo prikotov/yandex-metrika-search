@@ -107,10 +107,10 @@ if ($args['limit'] !== null) {
 }
 echo "\n";
 
-MetrikaClient::saveCsv($phrases, "$reportPath/metrika_phrases_$timestamp.csv");
-MetrikaClient::saveMarkdown($phrases, "$reportPath/metrika_phrases_$timestamp.md", "Поисковые фразы", $args['dateFrom'], $args['dateTo']);
+MetrikaClient::saveCsv($phrases, "$reportPath/yandex_metrika_phrases_$timestamp.csv");
+MetrikaClient::saveMarkdown($phrases, "$reportPath/yandex_metrika_phrases_$timestamp.md", "Поисковые фразы", $args['dateFrom'], $args['dateTo']);
 
 echo "  Создано файлов:\n";
-echo "    - metrika_phrases_$timestamp.csv\n";
-echo "    - metrika_phrases_$timestamp.md\n";
+echo "    - yandex_metrika_phrases_$timestamp.csv\n";
+echo "    - yandex_metrika_phrases_$timestamp.md\n";
 echo "\n  Найдено фраз: " . count($phrases) . "\n";
