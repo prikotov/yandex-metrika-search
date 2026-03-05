@@ -99,7 +99,7 @@ if ($args['limit'] !== null && $args['limit'] > 0) {
 $reportPath = MetrikaClient::createReportDir();
 $timestamp = MetrikaClient::getFileTimestamp();
 
-echo "\n  Папка отчета: metrika_reports/" . basename($reportPath) . "\n";
+echo "\n  Папка отчета: yandex_metrika_reports/" . basename($reportPath) . "\n";
 echo "  Период: {$args['dateFrom']} — {$args['dateTo']}\n";
 echo "  Сортировка: {$args['sort']} ({$args['order']})\n";
 if ($args['limit'] !== null) {

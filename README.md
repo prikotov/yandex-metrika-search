@@ -91,7 +91,7 @@ php .opencode/skills/yandex-metrika-traffic/traffic.php -p "rag-s-nulya"
 Отчёты сохраняются в папку с датой и временем запуска:
 
 ```
-metrika_reports/
+yandex_metrika_reports/
 └── 2026-03-02_10-30-15/
     ├── metrika_phrases.csv
     └── metrika_phrases.md
