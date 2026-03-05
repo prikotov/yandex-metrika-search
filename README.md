@@ -17,8 +17,8 @@
 
 | Файл | Содержание |
 |------|------------|
-| `metrika_phrases.*` | Поисковые фразы с метриками: визиты, просмотры, отказы, время на сайте |
-| `phrases_pages.*` | Кросс-отчёт: поисковые фразы + страницы входа (запуск `phrases_pages.php`) |
+| `yandex_metrika_phrases.*` | Поисковые фразы с метриками: визиты, просмотры, отказы, время на сайте |
+| `yandex_metrika_phrases_pages.*` | Кросс-отчёт: поисковые фразы + страницы входа (запуск `phrases_pages.php`) |
 
 ## Зависимости
 
@@ -93,8 +93,8 @@ php .opencode/skills/yandex-metrika-traffic/traffic.php -p "rag-s-nulya"
 ```
 yandex_metrika_reports/
 └── 2026-03-02_10-30-15/
-    ├── metrika_phrases.csv
-    └── metrika_phrases.md
+    ├── yandex_metrika_phrases.csv
+    └── yandex_metrika_phrases.md
 ```
 
 CSV открывается в Excel/LibreOffice, Markdown — в любом текстовом редакторе или напрямую в Obsidian.
