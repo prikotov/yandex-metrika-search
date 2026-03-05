@@ -24,6 +24,7 @@ php .opencode/skills/yandex-metrika-search/metrika.php [опции] [дата_о
 
 | Опция | Сокращение | Описание | Значения | По умолчанию |
 |-------|------------|----------|----------|--------------|
+| `--site` | | Имя сайта из конфига | имя сайта | default_counter |
 | `--sort` | `-s` | Поле сортировки | `visits`, `visitors`, `bounce_rate`, `page_depth`, `avg_duration` | `visits` |
 | `--order` | `-o` | Направление сортировки | `asc`, `desc` | `desc` |
 | `--limit` | `-l` | Лимит записей | число (например: 10, 20, 50) | все записи |
@@ -33,6 +34,9 @@ php .opencode/skills/yandex-metrika-search/metrika.php [опции] [дата_о
 ```bash
 # Все фразы за 30 дней, сортировка по визитам (по убыванию)
 php .opencode/skills/yandex-metrika-search/metrika.php
+
+# Для конкретного сайта
+php .opencode/skills/yandex-metrika-search/metrika.php --site task.ai-aid.pro
 
 # Топ-10 фраз по визитам
 php .opencode/skills/yandex-metrika-search/metrika.php --limit 10

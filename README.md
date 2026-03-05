@@ -54,6 +54,7 @@ php .opencode/skills/yandex-metrika-search/metrika.php -s bounce_rate     # со
 
 | Параметр | Сокращение | Описание | Пример |
 |----------|------------|----------|--------|
+| `--site` | | Имя сайта из конфига | `--site task.ai-aid.pro` |
 | `--limit` | `-l` | Лимит записей | `-l 20` |
 | `--sort` | `-s` | Поле сортировки | `-s bounce_rate` |
 | `--order` | `-o` | Порядок: asc/desc | `-o asc` |
